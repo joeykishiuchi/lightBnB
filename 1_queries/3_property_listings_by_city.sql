@@ -1,8 +1,8 @@
-SELECT properties.*, AVG(rating) AS average_rating
-FROM property_reviews
-JOIN properties ON properties.id = property_id
+SELECT properties.*, AVG(property_reviews.rating) AS average_rating
+FROM properties
+JOIN property_reviews ON properties.id = property_id
 WHERE city LIKE '%ancouver'
-GROUP BY properties.id, properties.title, properties.cost_per_night
+GROUP BY properties.id
 HAVING avg(property_reviews.rating) >= 4
-ORDER BY properties.cost_per_night
+ORDER BY cost_per_night
 limit 10;
